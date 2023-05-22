@@ -73,3 +73,4 @@ end
 
 gem 'pry'
 gem 'devise'
+gem 'carrierwave'
