@@ -1,5 +1,3 @@
 class Image < ApplicationRecord
-  belongs_to :user
-  belongs_to :item
-  mount_uploader :image_url, ImageUploader
+  # Active Storageに切り替えるため使用しません
 end
