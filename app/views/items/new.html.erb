@@ -1,6 +1,4 @@
-<h1>出品したい商品の情報を登録してください。</h1>
-
-<%= form_for @item do |f| %>
+<%= form_for @item, html: { multipart: true } do |f| %>
   <div class="field">
     <%= f.label :商品名 %><br />
     <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
