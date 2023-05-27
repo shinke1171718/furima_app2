@@ -1,10 +1,11 @@
 class ItemsController < ApplicationController
 
   def index
-    @items = Item.all
+    @items = Item.where(buyer_id: nil)
   end
 
   def show
+    @item = Item.find(params[:id])
   end
 
   def new
@@ -18,7 +19,7 @@ class ItemsController < ApplicationController
       render 'new'
     else
       @item.save!
-      redirect_to @item
+      redirect_to root_path
     end
   end
 
@@ -31,7 +32,9 @@ class ItemsController < ApplicationController
   def destroy
   end
 
-  def checkout
+  def cheackout
+    @item = Item.find(params[:item_id])
+    @item.update(buyer_id: current_user.id)
   end
 
   private

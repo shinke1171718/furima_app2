@@ -1,1 +1,34 @@
 <h1>商品の詳細画面になります。</h1>
+
+<%= form_tag(item_cheackout_path, method: :get) do %>
+  <%= hidden_field_tag :item_id, @item.id %>
+  <div class="field">
+    <%= image_tag(@item.image.variant(resize_to_limit: [500, 500])) %>
+  </div>
+
+  <div class="field">
+    <p>商品名：<%= @item.name %></P>
+  </div>
+
+  <div class="field">
+    <p>詳細:<%= @item.explanation %></P>
+  </div>
+
+  <div class="field">
+    <p>金額：<%= @item.price %>円</P>
+  </div>
+
+<% end %>
+
+
+<% if !(@item.seller_id == current_user.id) %>
+  "あなたが出品した商品です。"
+<% else %>
+  <%= form_tag(item_cheackout_path(@item), method: :get) do %>
+    <%= hidden_field_tag :item_id, @item.id %>
+    <%= submit_tag '購入する' %>
+  <% end %>
+<% end %>
+
+
+

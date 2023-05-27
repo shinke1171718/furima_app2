@@ -1,1 +1,33 @@
 <h1>最終確認画面です。</h1>
+
+<%= form_tag(item_cheackout_path, method: :get) do %>
+  <%= hidden_field_tag :item_id, @item.id %>
+  <div class="field">
+    <%= image_tag(@item.image.variant(resize_to_limit: [500, 500])) %>
+  </div>
+
+  <div class="field">
+    <p>商品名：<%= @item.name %></P>
+  </div>
+
+  <div class="field">
+    <p>詳細:<%= @item.explanation %></P>
+  </div>
+
+  <div class="field">
+    <p>金額：<%= @item.price %>円</P>
+  </div>
+
+<% end %>
+</div>
+
+<%= form_tag(root_path, method: :get) do %>
+  <%= hidden_field_tag 'item[buyer_id]', current_user.id %>
+  <%= submit_tag '購入する（最終確認です。キャンセルは不可です。）' %>
+<% end %>
+
+
+
+
+
+
