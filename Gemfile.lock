@@ -247,6 +247,7 @@ DEPENDENCIES
   carrierwave
   debug
   devise
+  image_processing
   importmap-rails
   jbuilder
   pg (~> 1.1)
