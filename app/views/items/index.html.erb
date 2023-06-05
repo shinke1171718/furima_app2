@@ -1,5 +1,27 @@
 <h1>ホーム画面になります</h1>
 
+<% if !current_page?(new_user_session_path) %>
+<nav class="navbar">
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link"><%= link_to "ホームへ戻る", root_path %></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link"><%= link_to "マイページ", user_session_path %></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link"><%= link_to "ログアウト", destroy_user_session_path %></a>
+    </li>
+  </ul>
+</nav>
+<% end %>
+
+<% if flash[:notice] %>
+  <div class="flash notice">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+
 <% @items.each do |item| %>
   <% if item.image.attached? %>
     <%= link_to item_path(item) do %>
