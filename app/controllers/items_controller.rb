@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :require_login
 
   def index
-    @items = Item.where(buyer_id: nil)
+    @items = Item.where(buyer_id: nil).where.not(seller_id: current_user.id)
   end
 
   def show

@@ -1,4 +1,5 @@
 <h1>商品の詳細画面になります。</h1>
+<button><%= link_to "戻る", request.referer || root_path %></button>
 
 <%= form_tag(item_cheackout_path, method: :get) do %>
   <%= hidden_field_tag :item_id, @item.id %>
@@ -21,13 +22,9 @@
 <% end %>
 
 
-<% if !(@item.seller_id == current_user.id) %>
-  "あなたが出品した商品です。"
-<% else %>
-  <%= form_tag(item_cheackout_path(@item), method: :get) do %>
-    <%= hidden_field_tag :item_id, @item.id %>
-    <%= submit_tag '購入する' %>
-  <% end %>
+<%= form_tag(item_cheackout_path(@item), method: :get) do %>
+  <%= hidden_field_tag :item_id, @item.id %>
+  <%= submit_tag '購入する' %>
 <% end %>
 
 

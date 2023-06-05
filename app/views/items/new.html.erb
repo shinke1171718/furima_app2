@@ -1,3 +1,6 @@
+<h1>出品したい商品の情報を入力してください。</h1>
+<button><%= link_to "戻る", request.referer || root_path %></button>
+
 <%= form_for @item, html: { multipart: true } do |f| %>
   <div class="field">
     <%= f.label :商品名 %><br />

@@ -1,4 +1,4 @@
-<h1>ホーム画面になります</h1>
+<h1>商品一覧</h1>
 
 <% if !current_page?(new_user_session_path) %>
 <nav class="navbar">
@@ -31,3 +31,7 @@
     <p>No image</p>
   <% end %>
 <% end %>
+
+<div class="button-container">
+  <button><%= link_to "出品する", "/items/new" %></button>
+</div>

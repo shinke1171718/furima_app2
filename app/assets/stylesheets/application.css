@@ -31,3 +31,10 @@
 .nav-item{
   list-style: none;
 }
+
+.button-container {
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  z-index: 9999;
+}
