@@ -1,13 +1,16 @@
 Rails.application.routes.draw do
+  devise_scope :user do
+    get 'users/sign_in', to: 'sessions#new', as: :new_user_session
+    post 'users/sign_in', to: 'sessions#create', as: :user_session
+    get 'users/sign_out', to: 'sessions#destroy', as: :destroy_user_session
+    get 'users/sign_up', to: 'registrations#new', as: :new_user_registration
+    post 'users/sign_up', to: 'registrations#create', as: :user_registration
+  end
   root to: 'items#index'
   get 'items/:id/cheackout', to: 'items#cheackout', as: 'item_cheackout'
-  devise_for :users, controllers: { registrations: 'registrations' }
-  devise_scope :user do
-    get '/users/sign_out' => 'devise/sessions#destroy'
-  end
   resources :items do
     member do
-      get :cheackout
+      get :checkout
     end
   end
 end

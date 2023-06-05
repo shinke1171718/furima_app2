@@ -10,12 +10,6 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <header>
-    <div class = "information_list">
-      <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-    </div>
-  </header>
-
   <body>
     <%= yield %>
   </body>

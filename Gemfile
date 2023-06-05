@@ -75,3 +75,4 @@ gem 'pry'
 gem 'devise'
 gem 'carrierwave'
 gem "image_processing"
+gem 'bcrypt'

@@ -1,0 +1,23 @@
+<h1>ログイン画面</h1>
+
+<% if flash[:notice] %>
+  <div class="flash notice">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+
+<%= form_with url: user_session_path, local: true do |f| %>
+	<div class="field">
+	  <%= f.label :名前 %><br />
+	  <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+	</div>
+	<div class="field">
+		<%= f.label :password %><br />
+	  <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+  <%= f.submit "Log in" %>
+<% end %>
+
+<div class="field">
+	<%= link_to '新規登録の方はこちら', new_user_registration_path %>
+</div>

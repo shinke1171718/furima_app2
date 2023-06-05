@@ -74,12 +74,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_25_040114) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name", default: ""
+    t.string "name", default: "", null: false
     t.string "email", default: "", null: false
-    t.string "postal_code", default: ""
-    t.string "address1", default: ""
-    t.string "address2", default: ""
-    t.string "encrypted_password", default: "", null: false
+    t.string "postal_code", default: "", null: false
+    t.string "address1", default: "", null: false
+    t.string "address2", default: "", null: false
+    t.string "password_digest", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
