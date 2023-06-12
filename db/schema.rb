@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_25_040114) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_06_021022) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_25_040114) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "chats", force: :cascade do |t|
+    t.bigint "item_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_chats_on_item_id"
+  end
+
   create_table "images", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "item_id", null: false
@@ -53,15 +60,25 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_25_040114) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.string "name", default: ""
-    t.text "explanation", default: ""
-    t.integer "price"
+    t.string "name", default: "", null: false
+    t.text "explanation", default: "", null: false
+    t.integer "price", null: false
     t.string "image", default: "", null: false
     t.text "image_meta_data", default: "", null: false
-    t.string "seller_id", default: ""
+    t.string "seller_id", default: "", null: false
     t.string "buyer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.bigint "chat_id", null: false
+    t.bigint "user_id", null: false
+    t.text "comment", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chat_id"], name: "index_messages_on_chat_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -91,8 +108,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_25_040114) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "chats", "items"
   add_foreign_key "images", "items"
   add_foreign_key "images", "users"
+  add_foreign_key "messages", "chats"
+  add_foreign_key "messages", "users"
   add_foreign_key "orders", "items"
   add_foreign_key "orders", "users"
 end

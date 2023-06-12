@@ -9,8 +9,10 @@ Rails.application.routes.draw do
   root to: 'items#index'
   get 'items/:id/cheackout', to: 'items#cheackout', as: 'item_cheackout'
   resources :items do
+    resources :chats, only: [:create]
     member do
       get :checkout
     end
   end
+  resources :messages
 end
