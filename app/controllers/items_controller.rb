@@ -7,6 +7,8 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @chat = Chat.find_by(item_id: @item.id)
+    @current_user = current_user
   end
 
   def new
@@ -20,6 +22,8 @@ class ItemsController < ApplicationController
       render 'new'
     else
       @item.save!
+      #チャットルームの作成
+      @chat = Chat.create(item: @item)
       redirect_to root_path
     end
   end

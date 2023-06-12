@@ -1,5 +1,5 @@
 <h1>商品の詳細画面になります。</h1>
-<button><%= link_to "戻る", request.referer || root_path %></button>
+<button><%= link_to "戻る", root_path %></button>
 
 <%= form_tag(item_cheackout_path, method: :get) do %>
   <%= hidden_field_tag :item_id, @item.id %>
@@ -21,6 +21,28 @@
 
 <% end %>
 
+<div class="posts">
+  <% if @chat.messages.blank? %>
+    <p>コメントはありません</p>
+  <% else %>
+    <% @chat.messages.each do |message| %>
+      <p><%= message.user.name %>: <%= message.comment %></p>
+    <% end %>
+  <% end %>
+</div>
+
+
+
+<div class="posts">
+  <%= form_with(url: messages_path, method: :post) do |form| %>
+
+    <%= form.hidden_field :chat_id, value: @chat.id %>
+    <%= form.hidden_field :user_id, value: @current_user.id %>
+
+    <%= form.text_field :comment %>
+    <%= form.submit "送信" %>
+  <% end %>
+</div>
 
 <%= form_tag(item_cheackout_path(@item), method: :get) do %>
   <%= hidden_field_tag :item_id, @item.id %>

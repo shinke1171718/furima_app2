@@ -1,4 +1,11 @@
 <h1>出品したい商品の情報を入力してください。</h1>
+
+<% if flash[:notice] %>
+  <div class="flash notice">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+
 <button><%= link_to "戻る", request.referer || root_path %></button>
 
 <%= form_for @item, html: { multipart: true } do |f| %>
