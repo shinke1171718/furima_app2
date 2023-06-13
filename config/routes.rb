@@ -16,5 +16,10 @@ Rails.application.routes.draw do
     end
   end
   resources :messages
-  resources :mypages
+  resources :mypages do
+    member do
+      get :purchased_items
+      get :listed_items
+    end
+  end
 end
