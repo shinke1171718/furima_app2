@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'mypages/show'
   devise_scope :user do
     get 'users/sign_in', to: 'sessions#new', as: :new_user_session
     post 'users/sign_in', to: 'sessions#create', as: :user_session
@@ -15,4 +16,5 @@ Rails.application.routes.draw do
     end
   end
   resources :messages
+  resources :mypages
 end
