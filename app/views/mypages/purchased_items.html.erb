@@ -1,0 +1,16 @@
+<h1>購入済み商品一覧</h1>
+<button><%= link_to "戻る", mypage_path %></button>
+
+<% if @purchase_items.present? %>
+  <% @purchase_items.each do |item| %>
+    <% if item.image.attached? %>
+      <%= link_to item_path(item) do %>
+        <%= image_tag(item.image.variant(resize_to_limit: [200, 200])) %>
+      <% end %>
+    <% else %>
+      <p>No image</p>
+    <% end %>
+  <% end %>
+<% else %>
+  <p>購入済み商品はありません</p>
+<% end %>

@@ -1,2 +1,22 @@
 <h1>マイページ</h1>
-<a class="nav-link"><%= link_to "ログアウト", destroy_user_session_path %></a>
+<button><%= link_to "戻る", root_path %></button>
+<nav class="mypage_navbar">
+  <ul class="mypage_navbar-nav">
+    <li class="mypage_nav-item">
+      <a class="nav-link"><%= link_to "ログアウト", destroy_user_session_path %></a>
+    </li>
+    <li class="mypage_nav-item">
+      <a class="nav-link"><%= link_to "購入済み商品一覧", purchased_items_mypage_path %></a>
+    </li>
+    <li class="mypage_nav-item">
+      <a class="nav-link"><%= link_to "出品商品一覧", listed_items_mypage_path %></a>
+    </li>
+    <li class="mypage_nav-item">
+      <a class="nav-link"><%= link_to "サブ住所登録" %></a>
+    </li>
+    <li class="mypage_nav-item">
+      <a class="nav-link"><%= link_to "ユーザー情報編集" %></a>
+    </li>
+  </ul>
+</nav>
+
