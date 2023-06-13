@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_06_021022) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_13_011406) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -81,6 +81,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_06_021022) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "mypages", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_mypages_on_user_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "item_id", null: false
@@ -113,6 +120,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_06_021022) do
   add_foreign_key "images", "users"
   add_foreign_key "messages", "chats"
   add_foreign_key "messages", "users"
+  add_foreign_key "mypages", "users"
   add_foreign_key "orders", "items"
   add_foreign_key "orders", "users"
 end
