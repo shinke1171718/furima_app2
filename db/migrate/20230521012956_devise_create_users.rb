@@ -10,6 +10,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
       t.string :address1,           null: false, default: ""
       t.string :address2,           null: false, default: ""
       t.string :password_digest,    null: false, default: ""
+      t.references :secondaddress
 
       ## Recoverable
       t.string   :reset_password_token

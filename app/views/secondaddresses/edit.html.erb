@@ -1,0 +1,28 @@
+<h1>サブ住所更新</h1>
+
+<button><%= link_to "戻る", root_path %></button>
+
+<% if flash[:notice] %>
+  <div class="flash notice">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+
+<%= form_with model: @secondaddress, url: secondaddress_path(@secondaddress), method: :patch do |f| %>
+  <div class="field">
+    <%= f.label :郵便番号（ハイフンは除いて） %><br />
+    <%= f.text_field :second_postal_code %>
+  </div>
+
+  <div class="field">
+    <%= f.label :市区町村まで入力 %><br />
+    <%= f.text_field :second_address1 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :番地（建物名・部屋番号） %><br />
+    <%= f.text_field :second_address2 %>
+  </div>
+
+  <%= f.submit "更新" %>
+<% end %>
