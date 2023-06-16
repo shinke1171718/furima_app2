@@ -22,4 +22,7 @@ Rails.application.routes.draw do
       get :listed_items
     end
   end
+
+  get 'secondaddress/edit_or_new', to: 'secondaddresses#edit_or_new', as: 'edit_or_new_secondaddress'
+  resources :secondaddresses
 end

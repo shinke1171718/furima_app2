@@ -1,0 +1,3 @@
+class Secondaddress < ApplicationRecord
+  belongs_to :user
+end
