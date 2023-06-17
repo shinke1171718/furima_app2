@@ -8,6 +8,7 @@ class CreateItems < ActiveRecord::Migration[7.0]
       t.text :image_meta_data,        null: false, default: ""
       t.string :seller_id,            null: false, default: ""
       t.string :buyer_id
+      t.text :address
       t.timestamps
     end
   end
