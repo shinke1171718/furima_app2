@@ -67,6 +67,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_100545) do
     t.text "image_meta_data", default: "", null: false
     t.string "seller_id", default: "", null: false
     t.string "buyer_id"
+    t.text "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

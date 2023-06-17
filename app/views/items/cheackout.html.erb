@@ -18,11 +18,14 @@
     <p>金額：<%= @item.price %>円</P>
   </div>
 
+  <div class="field">
+    <p>配送先：<%= @item.address %>への配送をします。</P>
+  </div>
+
 <% end %>
-</div>
 
 <%= form_tag(root_path, method: :get) do %>
-  <%= hidden_field_tag 'item[buyer_id]', current_user.id %>
+  <%= hidden_field_tag 'item[buyer_id]', @current_user.id %>
   <%= submit_tag '購入する（最終確認です。キャンセルは不可です。）' %>
 <% end %>
 
