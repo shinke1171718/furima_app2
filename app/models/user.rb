@@ -7,4 +7,7 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
   has_one :mypage
   has_one :secondaddress
+
+  #仮想属性をユーザーモデルに追加
+  attr_accessor :new_password, :new_password_confirmation, :current_password
 end
