@@ -11,9 +11,11 @@ class SecondaddressesController < ApplicationController
 
   def new
     @secondaddress = Secondaddress.new
+    @user =current_user
   end
 
   def create
+    @user =current_user
     @secondaddress = Secondaddress.new(secondaddress_params)
     @secondaddress.user = current_user
     if @secondaddress.save
