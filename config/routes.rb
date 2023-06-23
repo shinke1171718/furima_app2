@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     get 'users/sign_out', to: 'sessions#destroy', as: :destroy_user_session
     get 'users/sign_up', to: 'registrations#new', as: :new_user_registration
     post 'users/sign_up', to: 'registrations#create', as: :user_registration
+    get 'registrations/edit', to: 'registrations#edit', as: :edit_user_registration
+    patch 'registrations/update', to: 'registrations#update', as: :update_user_registration
   end
   root to: 'items#index'
   get 'items/:id/cheackout', to: 'items#cheackout', as: 'item_cheackout'
