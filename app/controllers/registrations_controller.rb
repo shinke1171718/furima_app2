@@ -50,7 +50,6 @@ class RegistrationsController < ApplicationController
       @user.update(user_params_without_password)
       flash[:notice] = "ユーザー情報を更新しました。（パスワード未更新：パスワードを設定された場合には入力漏れがないか確認してください。）"
       redirect_to edit_user_registration_path
-      end
     end
   end
 
