@@ -1,1 +1,35 @@
-<h1>出品商品の編集画面です。</h1>
+<h1>出品商品の編集</h1>
+
+<% if flash[:notice] %>
+  <div class="flash notice">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+
+<button><%= link_to '戻る', listed_items_mypage_path(id: @item.id) %></button>
+
+<%= form_for @item, html: { multipart: true } do |f| %>
+  <div class="field">
+    <%= f.label :商品名 %><br />
+    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+  </div> 
+
+  <div class="field">
+    <%= f.label :詳細 %><br />
+    <%= f.text_field :explanation, autofocus: true, autocomplete: "explanation" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :金額 %><br />
+    <%= f.number_field :price, autofocus: true, autocomplete: "price" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :商品写真をアップしてください %><br />
+    <%= f.file_field :image, autofocus: true, autocomplete: "image" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "更新する" %>
+  </div>
+<% end %>
