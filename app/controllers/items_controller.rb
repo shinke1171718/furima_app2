@@ -42,20 +42,35 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     @item.seller_id = current_user.id
-    if @item.nil?
-      render 'new'
-    else
+    if @item.image.attached?
       @item.save!
-      #チャットルームの作成
+      # チャットルームの作成
       @chat = Chat.create(item: @item)
       redirect_to root_path
+    else
+      flash.now[:notice] = "画像を添付してください"
+      render 'new'
     end
   end
 
   def edit
+    @item = Item.find(params[:id])
   end
 
   def update
+    #itemのidを取得
+    @item = Item.find(params[:id])
+
+    #itemの情報を更新
+    if @item.update(item_params)
+      flash[:notice] = "商品情報を更新しました。"
+      redirect_to edit_item_path(@item.id)
+    else
+      flash[:notice] = "商品情報の更新に失敗しました。"
+      render :edit
+    end
+
+
   end
 
   def destroy

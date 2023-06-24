@@ -53,27 +53,32 @@
     <% end %>
   </div>
 
-  <%= form_tag(item_cheackout_path(@item), method: :get) do %>
-    <%= hidden_field_tag :item_id, @item.id %>
+  <% if @item.seller_id.to_i == @current_user.id %>
+    <p><%= @current_user.name %>様が出品している商品です。</p>
+    <%= link_to "商品を編集する", edit_item_path %>
+  <% else %>
+    <%= form_tag(item_cheackout_path(@item), method: :get) do %>
+      <%= hidden_field_tag :item_id, @item.id %>
 
-    <% if @address.present? %>
-      <h3>住所</h3>
-      <% address_text = "#{@address[:postal_code]} #{@address[:address1]} #{@address[:address2]}" %>
-      <p><%= address_text %></p>
-      <%= radio_button_tag 'selected_address', address_text %>
-      この住所を選択する
+      <% if @address.present? %>
+        <h3>住所</h3>
+        <% address_text = "#{@address[:postal_code]} #{@address[:address1]} #{@address[:address2]}" %>
+        <p><%= address_text %></p>
+        <%= radio_button_tag 'selected_address', address_text %>
+        この住所を選択する
+      <% end %>
+
+      <% if @second_address.present? %>
+        <h3>サブ住所</h3>
+        <% second_address_text = "#{@second_address[:second_postal_code]} #{@second_address[:second_address1]} #{@second_address[:second_address2]}" %>
+        <p><%= second_address_text %></p>
+        <%= radio_button_tag 'selected_address', second_address_text %>
+        このサブ住所を選択する
+      <% end %>
+
+      <br /><br />
+      <%= submit_tag '購入する' %>
     <% end %>
-
-    <% if @second_address.present? %>
-      <h3>サブ住所</h3>
-      <% second_address_text = "#{@second_address[:second_postal_code]} #{@second_address[:second_address1]} #{@second_address[:second_address2]}" %>
-      <p><%= second_address_text %></p>
-      <%= radio_button_tag 'selected_address', second_address_text %>
-      このサブ住所を選択する
-    <% end %>
-
-    <br /><br />
-    <%= submit_tag '購入する' %>
   <% end %>
 <% end %>
 
