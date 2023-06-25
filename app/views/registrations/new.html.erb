@@ -2,11 +2,7 @@
 
 <%= render 'shared/error_messages', user: @user %>
 
-<% if flash[:notice] %>
-  <div class="flash notice">
-    <%= flash[:notice] %>
-  </div>
-<% end %>
+<%= render 'shared/flash_notice' %>
 
 <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
 	<div class="field">

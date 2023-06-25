@@ -1,12 +1,8 @@
 <h1>サブ住所更新</h1>
 
-<button><%= link_to "戻る", mypage_path(@user) %></button>
+<button><%= link_to "戻る", mypage_path(@current_user.id) %></button>
 
-<% if flash[:notice] %>
-  <div class="flash notice">
-    <%= flash[:notice] %>
-  </div>
-<% end %>
+<%= render 'shared/flash_notice' %>
 
 <%= form_with model: @secondaddress, url: secondaddress_path(@secondaddress), method: :patch do |f| %>
   <div class="field">
