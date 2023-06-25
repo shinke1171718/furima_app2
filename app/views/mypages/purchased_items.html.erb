@@ -3,13 +3,7 @@
 
 <% if @purchase_items.present? %>
   <% @purchase_items.each do |item| %>
-    <% if item.image.attached? %>
-      <%= link_to item_path(item) do %>
-        <%= image_tag(item.image.variant(resize_to_limit: [200, 200])) %>
-      <% end %>
-    <% else %>
-      <p>No image</p>
-    <% end %>
+    <%= render partial: 'shared/item_with_image_link', locals: { item: item } %>
   <% end %>
 <% else %>
   <p>購入済み商品はありません</p>
