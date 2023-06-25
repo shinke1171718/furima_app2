@@ -1,10 +1,6 @@
 <h1>出品したい商品の情報を入力してください。</h1>
 
-<% if flash[:notice] %>
-  <div class="flash notice">
-    <%= flash[:notice] %>
-  </div>
-<% end %>
+<%= render 'shared/flash_notice' %>
 
 <button><%= link_to "戻る", request.referer || root_path %></button>
 

@@ -55,6 +55,7 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
+    @current_user = current_user
   end
 
   def update

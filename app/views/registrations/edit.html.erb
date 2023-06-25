@@ -1,11 +1,7 @@
 <h1>ユーザー情報編集</h1>
 <button><%= link_to "戻る", mypage_path(@user) %></button>
 
-<% if flash[:notice] %>
-  <div class="flash notice">
-    <%= flash[:notice] %>
-  </div>
-<% end %>
+<%= render 'shared/flash_notice' %>
 
 <%= form_with model: @user, url: update_user_registration_path(@current_user_edit), method: :patch do |f| %>
 
